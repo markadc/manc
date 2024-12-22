@@ -4,6 +4,8 @@
 
 ## 示例
 
+- 简单演示
+
 ```python
 from manc.plugins import UserAgentPlugin
 from manc.spider import BaseSpider
@@ -28,6 +30,8 @@ print(r2.xpath("//title/text()").get())
 print()
 
 ```
+
+- 自定义扩展演示
 
 ```python
 from manc import Spider
