@@ -62,8 +62,9 @@ print(r.request.headers)
 print(r.request.proxies)
 print(r.get_one("//title/text()"))
 print(r.get_all("//title/text()"))
-
 ```
+
+## 实战演示
 
 ### 爬取抖音
 
@@ -116,5 +117,4 @@ if __name__ == '__main__':
     url = "https://live.douyin.com/646454278948"  # 抖音【与辉同行】直播间
     status = is_living(url)
     print(status)
-
 ```
