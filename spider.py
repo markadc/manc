@@ -26,11 +26,7 @@ class BaseSpider:
             request = Request(url, headers=headers, params=params, proxies=proxies, timeout=timeout, **kwargs)
         else:
             request = Request(url, headers=headers, params=params, data=data, json=json, proxies=proxies, timeout=timeout, **kwargs)
-        self.on_request(request)
-        response = self.on_response(request.do())
-        request.__dict__.update(response.request.__dict__)
-        response.request = request
-        return response
+        return self.perform(request)
 
     def get(self, url: str, headers: dict = None, params: dict = None, proxies: dict = None, timeout: int | float = 5, **kwargs):
         req = Request(url, headers=headers, params=params, proxies=proxies, timeout=timeout, **kwargs)
