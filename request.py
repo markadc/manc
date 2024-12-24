@@ -55,5 +55,7 @@ class Request:
             except Exception as e:
                 self.elog(self.url, e, i + 1)
                 time.sleep(self.delay)
+                if i == self.retry:
+                    raise e
             else:
                 return Response(response)
