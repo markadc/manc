@@ -3,12 +3,12 @@ from manc.plugins import SpiderPlugin
 
 
 class ProxyPlugin(SpiderPlugin):
-    def deal_request(self, request):
+    def process_request(self, request):
         proxy = 'http://127.0.0.1:1082'
         request.proxies = {"http": proxy, "https": proxy}
         request.name = "cMan"
 
-    def deal_response(self, response):
+    def process_response(self, response):
         return response
 
 

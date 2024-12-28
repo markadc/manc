@@ -6,17 +6,17 @@ from manc.tools import make_ua
 class SpiderPlugin:
     """爬虫扩展，处理请求和响应"""
 
-    def deal_request(self, request: Request):
+    def process_request(self, request: Request):
         pass
 
-    def deal_response(self, response: Response) -> Response:
+    def process_response(self, response: Response) -> Response:
         return response
 
 
 class UserAgentPlugin(SpiderPlugin):
     """请求扩展，为每一次的请求分配随机UA"""
 
-    def deal_request(self, request: Request):
+    def process_request(self, request: Request):
         request.headers = request.headers or {}
         request.headers.setdefault('User-Agent', make_ua())
 
@@ -27,7 +27,7 @@ class StatusCodePlugin(SpiderPlugin):
     def __init__(self, pass_codes: list = None):
         self.pass_codes = pass_codes or [200]
 
-    def deal_response(self, response: Response):
+    def process_response(self, response: Response):
         if response.status_code not in self.pass_codes:
             raise ResponseCodeError("{} not in {}".format(response.status_code, self.pass_codes))
         return response

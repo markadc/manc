@@ -8,12 +8,12 @@ class BaseSpider:
     def on_request(self, request: Request):
         """请求之前"""
         for plugin in self.plugins:
-            plugin.deal_request(request)
+            plugin.process_request(request)
 
     def on_response(self, response: Response):
         """响应之后"""
         for plugin in self.plugins:
-            response = plugin.deal_response(response)
+            response = plugin.process_response(response)
         return response
 
     def add_plugin(self, plugin: SpiderPlugin):
